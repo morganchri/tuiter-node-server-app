@@ -33,6 +33,7 @@ export const updateUser = (uid, user) => {
 	users[index] = { ...users[index], ...user };
 	return {status: 'ok'}
 };
+
 export const deleteUser = (uid) => {
 	const index = users.findIndex((u) => u._id === uid);
 	users.splice(index, 1);
