@@ -15,6 +15,9 @@ app.use(
 		 })
 );
 
+console.log("Frontend URL")
+console.log(process.env.FRONTEND_URL)
+
 const sessionOptions = {
 	secret: "any string",
 	resave: false,
