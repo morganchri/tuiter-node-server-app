@@ -1,7 +1,8 @@
-import * as usersDao from "./users-dao.js";
+import * as usersDao from "../users/users-dao.js";
 
 
 const AuthController = (app) => {
+
 	const register = (req, res) => {
 		const username = req.body.username;
 		const user = usersDao.findUserByUsername(username);
@@ -13,6 +14,7 @@ const AuthController = (app) => {
 		req.session["currentUser"] = newUser;
 		res.json(newUser);
 	};
+
 	const login    = (req, res) => {
 		const username = req.body.username;
 		const password = req.body.password;
@@ -24,6 +26,7 @@ const AuthController = (app) => {
 			res.sendStatus(404);
 		}
 	};
+
 	const profile  = (req, res) => {
 		const currentUser = req.session["currentUser"];
 		if (!currentUser) {
