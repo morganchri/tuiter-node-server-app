@@ -10,10 +10,19 @@ import AuthController from "./users/auth-controller.js";
 const app = express()
 app.use(express.json());
 
+// https://stackoverflow.com/questions/54019064/condition-cors-access-control-allow-origin-in-express-js
 app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGINS);
-	res.setHeader('Access-Control-Allow-Credentials', 'true');
-	res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+	const allowedOrigins = ["http://localhost:3000", "https://a5--resilient-clafoutis-a7cc91.netlify.app"];
+	const origin = req.headers.origin;
+
+	if (allowedOrigins.includes(origin)) {
+		res.header("Access-Control-Allow-Origin", origin);
+	}
+
+	res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH, OPTIONS");
+	res.header("Access-Control-Allow-Credentials", "true");
+	res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+
 	res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, access-control-allow-origin');
 	next();
 });
