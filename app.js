@@ -16,6 +16,10 @@ app.use(
 		 })
 );
 
+app.use((req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGINS);
+});
+
 const sessionOptions = {
 	secret: "any string",
 	resave: false,
