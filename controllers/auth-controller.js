@@ -40,8 +40,10 @@ const AuthController = (app) => {
 
 	const logout = async (req, res) => {
 		req.session.destroy();
-		res.sendStatus(200);
+		// res.sendStatus(200);
+		res.json({status: "ok"});
 	};
+
 	const update   = (req, res) => { };
 	app.post("/api/users/register", register);
 	app.post("/api/users/login",    login);
