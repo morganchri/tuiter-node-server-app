@@ -14,7 +14,6 @@ app.use(
 	cors({
 			 credentials: true,
 			 origin: process.env.FRONTEND_URL
-			 // origin: 'https://a5--resilient-clafoutis-a7cc91.netlify.app',
 		 })
 );
 
