@@ -19,6 +19,7 @@ const AuthController = (app) => {
 		const username = req.body.username;
 		const password = req.body.password;
 		const user = usersDao.findUserByCredentials(username, password);
+		console.log("User Login")
 		console.log(user)
 		if (user) {
 			req.session["currentUser"] = user;
