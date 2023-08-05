@@ -1,6 +1,5 @@
 import * as usersDao from "../users/users-dao.js";
 
-
 const AuthController = (app) => {
 
 	const register = (req, res) => {
@@ -38,10 +37,10 @@ const AuthController = (app) => {
 		res.json(currentUser);
 	};
 
-	const logout = async (req, res) => {
+	const logout = (req, res) => {
 		req.session.destroy();
-		// res.sendStatus(200);
-		res.json({status: "ok"});
+		res.sendStatus(200);
+		// res.json({status: "ok"});
 	};
 
 	const update   = (req, res) => { };
