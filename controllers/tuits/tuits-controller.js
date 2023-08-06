@@ -4,8 +4,16 @@ let tuits = posts;
 const createTuit = (req, res) => {
 	const newTuit = req.body;
 	newTuit._id = (new Date()).getTime()+'';
+	newTuit.topic = "TEST";
+	newTuit.username = "TestUserName";
+	newTuit.handle = "@testhandle";
+	newTuit.time = "now";
+	newTuit.image = "1200px-Xbox_one_logo.png";
+	newTuit.title = "Test Tuit";
 	newTuit.likes = 0;
 	newTuit.liked = false;
+	newTuit.disliked = false;
+	newTuit.dislikes = 0;
 	tuits.push(newTuit);
 	res.json(newTuit);
 }
@@ -20,6 +28,8 @@ const updateTuit = (req, res) => {
 }
 const deleteTuit = (req, res) => {
 	const tuitdIdToDelete = req.params.tid;
+	console.log("Tuit to delete");
+	console.log(req.params)
 	tuits = tuits.filter((t) =>
 							 t._id !== tuitdIdToDelete);
 	res.sendStatus(200);
