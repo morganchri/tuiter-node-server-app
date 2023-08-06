@@ -1,4 +1,7 @@
 import * as usersDao from "../users/users-dao.js";
+import usersController from "./users-controller.js";
+import * as UsersController from "./users-controller.js";
+import {updateUser} from "../users/users-dao.js";
 
 const AuthController = (app) => {
 
@@ -18,11 +21,8 @@ const AuthController = (app) => {
 		const username = req.body.username;
 		const password = req.body.password;
 		const user = usersDao.findUserByCredentials(username, password);
-		console.log("User Login")
-		console.log(user)
 		if (user) {
 			req.session["currentUser"] = user;
-			// console.log(user)
 			res.json(user);
 		} else {
 			res.sendStatus(404);
@@ -38,17 +38,17 @@ const AuthController = (app) => {
 		res.json(currentUser);
 	};
 
-	const logout = (req, res) => {
+	const logout = async (req, res) => {
 		req.session.destroy();
 		res.sendStatus(200);
-		// res.json({status: "ok"});
 	};
 
-	const update   = (req, res) => { };
-	app.post("/api/users/register", register);
-	app.post("/api/users/login",    login);
+	const update = (req, res) => {};
+
+	app.post("/api/users/register",register);
+	app.post("/api/users/login",      login);
 	app.post("/api/users/profile",  profile);
-	app.post("/api/users/logout",   logout);
-	app.put ("/api/users",          update);
+	app.post("/api/users/logout",    logout);
+	app.put ("/api/users",      updateUser);
 };
 export default AuthController;

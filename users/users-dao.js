@@ -1,7 +1,5 @@
 import users from "./users.js"
 
-// let users = [];
-
 export const findAllUsers = () => users;
 
 export const findUserById = (uid) => {
@@ -18,14 +16,7 @@ export const findUserByUsername = (username) => {
 };
 
 export const findUserByCredentials = (username, password) => {
-	// console.log("Username");
-	// console.log(username);
-	// console.log("Password");
-	// console.log(password);
-	// console.log("Users");
-	// console.log(users);
 	const index = users.findIndex((u) => u.username === username && u.password === password);
-	// console.log(index);
 	if (index !== -1) {
 		return users[index];
 	}
@@ -33,7 +24,10 @@ export const findUserByCredentials = (username, password) => {
 };
 
 
-export const createUser = (user) => users.push(user);
+export const createUser = (user) => {
+	users.push(user);
+	return user;
+}
 
 export const updateUser = (uid, user) => {
 	const index = users.findIndex((u) => u._id === uid);
